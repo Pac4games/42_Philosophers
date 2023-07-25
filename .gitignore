@@ -1,4 +1,5 @@
 philo
 *.o
 *.a
+vgcore.*
 obj/

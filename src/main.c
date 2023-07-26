@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/07/25 14:28:43 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/07/25 15:25:16 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,4 @@ int	main(int ac, char **av)
 	check_args(av);
 	printf("Arguments are valid!\n");
 	philo_rules_set(&philo, av);
-	printf("number of philosphers: %d\n", philo.num);
-	printf("time to die: %d\n", philo.time2die);
-	printf("time to eat: %d\n", philo.time2eat);
-	printf("time to sleep: %d\n", philo.time2sleep);
-	if (philo.hunger)
-		printf("hunger: %d\n", philo.hunger);
 }

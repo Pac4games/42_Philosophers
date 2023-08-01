@@ -6,12 +6,11 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/01 17:30:45 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/01 17:49:07 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <stdlib.h>
 
 pthread_mutex_t	mutex;
 int				mails = 0;
@@ -30,10 +29,14 @@ static void	philo_rules_set(t_philo *philo, char **av)
 
 static void	*routine()
 {
-	while (mails < 1000000)
+	int	p;
+
+	p = 0;
+	while (p < 1000)
 	{
 		pthread_mutex_lock(&mutex);
 		mails++;
+		p++;
 		pthread_mutex_unlock(&mutex);
 	}
 	return (0);
@@ -50,5 +53,17 @@ int	main(int ac, char **av)
 	check_args(av);
 	printf("Arguments are valid!\n");
 	philo_rules_set(&philo, av);
+	pthread_mutex_init(&mutex, NULL);
+	p = 0;
+	while (p < 4)
+	{
+		if (pthread_create(&th[p], NULL, &routine, NULL))
+			print_err("failed to create thread.");
+		if (pthread_join(th[p], NULL))
+			print_err("failed to join threads.");
+		p++;
+	}
+	pthread_mutex_destroy(&mutex);
+	printf("Number of mails: %d\n", mails);
 	return (EXIT_SUCCESS);
 }

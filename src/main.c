@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/01 17:49:07 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/01 18:01:58 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ static void	*routine()
 	int	p;
 
 	p = 0;
-	while (p < 1000)
+	while (p < 1000000)
 	{
 		pthread_mutex_lock(&mutex);
 		mails++;
@@ -59,8 +59,15 @@ int	main(int ac, char **av)
 	{
 		if (pthread_create(&th[p], NULL, &routine, NULL))
 			print_err("failed to create thread.");
+		printf("Thread %d has started.\n", p);
+		p++;
+	}
+	p = 0;
+	while (p < 4)
+	{
 		if (pthread_join(th[p], NULL))
 			print_err("failed to join threads.");
+		printf("Thread %d has finished.\n", p);
 		p++;
 	}
 	pthread_mutex_destroy(&mutex);

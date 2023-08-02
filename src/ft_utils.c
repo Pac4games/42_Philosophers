@@ -1,18 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/11 23:07:52 by paugonca          #+#    #+#             */
-/*   Updated: 2022/10/12 00:05:11 by paugonca         ###   ########.fr       */
+/*   Created: 2023/08/02 14:16:28 by paugonca          #+#    #+#             */
+/*   Updated: 2023/08/02 14:25:10 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "philo.h"
 
-int	skip_spaces(const char *str)
+static int	skip_spaces(const char *str)
 {
 	int	p;
 
@@ -49,4 +49,18 @@ int	ft_atoi(const char *str)
 		return (res * sign);
 	}
 	return (0);
+}
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	p;
+
+	if (!s)
+		return ;
+	p = 0;
+	while (s[p])
+	{
+		write(fd, &s[p], 1);
+		p++;
+	}
 }

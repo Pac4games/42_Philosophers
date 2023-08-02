@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/02 14:25:53 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/02 14:42:31 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ typedef struct s_philo_rules
 
 typedef struct s_philo
 {
-	pthread_t	th;
+	pthread_t		th;
+	pthread_mutex_t	mutex;
 }			t_philo;
 
 //ft_utils.c

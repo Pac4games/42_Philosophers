@@ -6,47 +6,38 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/03 16:20:40 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:30:09 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-static int	philo_data_set(t_philo *philo)
+static int	philo_data_set(t_philo_data *data)
 {
-	philo->data->forks = malloc(sizeof(pthread_mutex_t) * philo->data->num);
-	if (!philo->data->forks)
+	data->forks = malloc(sizeof(pthread_mutex_t) * data->num);
+	if (!data->forks)
 		return (0);
-	philo->data->fork_status = malloc(sizeof(int) * philo->data->num);
-	if (!philo->data->fork_status)
+	data->fork_status = malloc(sizeof(int) * data->num);
+	if (!data->fork_status)
 	{
-		free(philo->data->forks);
+		free(data->forks);
 		return (0);
 	}
-	memset(philo->data->fork_status, 0, philo->data->num * sizeof(int));
+	memset(data->fork_status, 0, data->num * sizeof(int));
 	return (1);
 }
 
-static int	philo_rules_set(t_philo *philo, char **av)
+static int	philo_args_set(t_philo_data *data, char **av)
 {
-	philo->data = malloc(sizeof(t_philo_data));
-	if (!philo->data)
-		return (0);
-	philo->data = malloc(sizeof(t_philo_data));
-	if (!philo->data)
-	{
-		free(philo->data);
-		return (0);
-	}
-	philo->data->num = ft_atoi(av[1]);
-	philo->data->time2die = ft_atoi(av[2]);
-	philo->data->time2eat = ft_atoi(av[3]);
-	philo->data->time2sleep = ft_atoi(av[4]);
+	data->num = ft_atoi(av[1]);
+	data->time2die = ft_atoi(av[2]);
+	data->time2eat = ft_atoi(av[3]);
+	data->time2sleep = ft_atoi(av[4]);
 	if (av[5])
-		philo->data->hunger = ft_atoi(av[5]);
+		data->hunger = ft_atoi(av[5]);
 	else
-		philo->data->hunger = -1;
-	if (!philo_data_set(philo))
+		data->hunger = -1;
+	if (!philo_data_set(data))
 		return (0);
 	return (1);
 }
@@ -60,12 +51,15 @@ int	main(int ac, char **av)
 		print_err("invalid number of arguments");
 	check_args(av);
 	printf("Arguments are valid!\n");
-	res = philo_rules_set(&philo, av);
+	philo.data = malloc(sizeof(t_philo_data));
+	if (!philo.data)
+		return (0);
+	res = philo_args_set(philo.data, av);
 	if (!res)
 	{
-		philo_free(&philo);
+		free(philo.data);
 		print_err("failed to allocate memory.");
 	}
-	philo_free(&philo);
+	free(philo.data);
 	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:30:48 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/03 15:19:35 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:23:40 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,4 @@ void	check_args(char **av)
 		}
 		p++;
 	}
-}
-
-void	philo_free(t_philo *philo)
-{
-	free(philo->data);
-	free(philo->rul);
 }

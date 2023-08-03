@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/03 15:51:16 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/03 16:20:30 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@
 # include <string.h>
 # include <pthread.h>
 
-typedef struct s_philo_rules
-{
-	int	num;
-	int	time2die;
-	int	time2eat;
-	int	time2sleep;
-	int	hunger;
-}			t_philo_rules;
-
 typedef struct s_philo_data
 {
 	pthread_mutex_t	death;
@@ -36,11 +27,15 @@ typedef struct s_philo_data
 	int				death_num;
 	int				fork_num;
 	int				*fork_status;
+	int				num;
+	int				time2die;
+	int				time2eat;
+	int				time2sleep;
+	int				hunger;
 }			t_philo_data;
 
 typedef struct s_philo
 {
-	t_philo_rules	*rul;
 	t_philo_data	*data;
 	pthread_t		th;
 }			t_philo;

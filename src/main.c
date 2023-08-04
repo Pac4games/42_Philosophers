@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/03 16:30:09 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:25:09 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,36 @@ static int	philo_args_set(t_philo_data *data, char **av)
 	return (1);
 }
 
-int	main(int ac, char **av)
+static t_philo	philo_create(t_philo_data *data)
 {
 	t_philo	philo;
-	int		res;
+
+	philo.status = THINKING;
+	philo.data = data;
+	return (philo);
+}
+
+int	main(int ac, char **av)
+{
+	t_philo			*philos;
+	t_philo_data	data;
+	int				p;
 
 	if (ac != 5 && ac != 6)
 		print_err("invalid number of arguments");
 	check_args(av);
 	printf("Arguments are valid!\n");
-	philo.data = malloc(sizeof(t_philo_data));
-	if (!philo.data)
+	if (!philo_args_set(&data, av))
 		return (0);
-	res = philo_args_set(philo.data, av);
-	if (!res)
+	philos = malloc(sizeof(t_philo) * data.num);
+	if (!philos)
 	{
-		free(philo.data);
-		print_err("failed to allocate memory.");
+		free(data.forks);
+		free(data.fork_status);
+		return (0);
 	}
-	free(philo.data);
+	p = 0;
+	while (p < data.num)
+		philos[p++] = philo_create(&data);
 	return (EXIT_SUCCESS);
 }

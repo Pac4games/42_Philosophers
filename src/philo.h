@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/03 16:20:30 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/04 15:21:30 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,14 @@
 # include <stdlib.h>
 # include <string.h>
 # include <pthread.h>
+
+# define THINKING 1
+# define EATING 2
+# define SLEEPING 3
+# define HAS_FORK 4
+# define DEAD 5
+# define AVAILABLE 0
+# define TAKEN 1
 
 typedef struct s_philo_data
 {
@@ -38,6 +46,7 @@ typedef struct s_philo
 {
 	t_philo_data	*data;
 	pthread_t		th;
+	int				status;
 }			t_philo;
 
 //ft_utils.c

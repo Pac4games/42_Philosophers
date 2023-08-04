@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/04 15:21:30 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:02:54 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <pthread.h>
+# include <sys/time.h>
 
 # define THINKING 1
 # define EATING 2
@@ -47,14 +48,17 @@ typedef struct s_philo
 	t_philo_data	*data;
 	pthread_t		th;
 	int				status;
+	long long		time_start;
+	long long		time_last_8;
 }			t_philo;
 
 //ft_utils.c
-int		ft_atoi(const char *str);
-void	ft_putstr_fd(char *s, int fd);
+int			ft_atoi(const char *str);
+void		ft_putstr_fd(char *s, int fd);
+//time_utils.c
+long long	timer_start(void);
 //bonus_utils.c
-void	print_err(char *msg);
-void	check_args(char **av);
-void	philo_free(t_philo *philo);
+void		print_err(char *msg);
+void		check_args(char **av);
 
 #endif

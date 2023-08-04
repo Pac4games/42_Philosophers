@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/04 15:25:09 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:03:27 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ static t_philo	philo_create(t_philo_data *data)
 
 	philo.status = THINKING;
 	philo.data = data;
+	philo.time_start = timer_start();
+	philo.time_last_8 = philo.time_start;
 	return (philo);
 }
 

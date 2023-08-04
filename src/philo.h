@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/04 16:02:54 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/04 16:15:54 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@ typedef struct s_philo_data
 	pthread_mutex_t	death;
 	pthread_mutex_t	msg;
 	pthread_mutex_t	*forks;
+	long long		time_start;
+	long long		time_last_8;
 	int				death_num;
 	int				fork_num;
 	int				*fork_status;
@@ -41,15 +43,13 @@ typedef struct s_philo_data
 	int				time2eat;
 	int				time2sleep;
 	int				hunger;
+	int				status;
 }			t_philo_data;
 
 typedef struct s_philo
 {
 	t_philo_data	*data;
 	pthread_t		th;
-	int				status;
-	long long		time_start;
-	long long		time_last_8;
 }			t_philo;
 
 //ft_utils.c

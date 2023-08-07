@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:36:41 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 16:55:38 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:57:26 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ int	philo_isdead(t_philo *philo)
 		print_philo_status(philo, DEAD);
 		return (1);
 	}
+	pthread_mutex_unlock(&(philo->data->death));
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 16:20:58 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/07 17:09:20 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo_data
 	long long		time_start;
 	long long		time_last_8;
 	int				death_num;
+	int				eat_num;
 	int				fork_num;
 	int				*fork_status;
 	int				num;

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 15:09:15 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/07 16:20:58 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ typedef struct s_philo_data
 	long long		time_start;
 	long long		time_last_8;
 	int				death_num;
-	int				kill;
 	int				fork_num;
 	int				*fork_status;
 	int				num;
@@ -44,14 +43,14 @@ typedef struct s_philo_data
 	int				time2eat;
 	int				time2sleep;
 	int				hunger;
-	int				status;
+	int				stts;
 }			t_philo_data;
 
 typedef struct s_philo
 {
 	t_philo_data	*data;
 	pthread_t		th;
-	int				phil_id;
+	int				id;
 }			t_philo;
 
 //ft_utils.c
@@ -60,12 +59,16 @@ void		ft_putstr_fd(char *s, int fd);
 //philo_utils.c
 t_philo		philo_create(t_philo_data *data);
 void		philo_end(t_philo *philos);
+int			philo_start(t_philo *philos);
+int			philo_isdead(t_philo *philo);
 //routine_utils.c
 void		*routine(void *arg);
 //time_utils.c
-long long	timer_start(void);
+long long	time_start(void);
+long long	get_ctime(t_philo philo);
 //extra_utils.c
 void		print_err(char *msg);
 void		check_args(char **av);
+void		print_philo_status(t_philo *philo, int stts);
 
 #endif

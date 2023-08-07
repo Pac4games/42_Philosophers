@@ -6,7 +6,7 @@
 #    By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 13:22:21 by paugonca          #+#    #+#              #
-#    Updated: 2023/08/04 16:01:24 by paugonca         ###   ########.fr        #
+#    Updated: 2023/08/07 15:55:10 by paugonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,10 +18,12 @@ CFLAGS		= -Wall -Wextra -Werror -pthread -g
 RM			= rm -f
 MKD			= mkdir
 
-SRC_NAME	= main.c		\
-			  ft_utils.c	\
-			  timer_utils.c	\
-			  extra_utils.c
+SRC_NAME	= main.c			\
+			  ft_utils.c		\
+			  philo_utils.c		\
+			  timer_utils.c		\
+			  extra_utils.c		\
+			  routine_utils.c	\
 
 SRC			= $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJ			= $(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRC))

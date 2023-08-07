@@ -1,32 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   timer_utils.c                                      :+:      :+:    :+:   */
+/*   routine_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/04 15:42:09 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 15:21:54 by paugonca         ###   ########.fr       */
+/*   Created: 2023/08/07 14:42:15 by paugonca          #+#    #+#             */
+/*   Updated: 2023/08/07 14:49:32 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-long long	timer_start(void)
+void	*routine(void *arg)
 {
-	struct timeval	time_start;
+	t_philo	*philo;
 
-	gettimeofday(&time_start, NULL);
-	return ((time_start.tv_sec * 1000) + (time_start.tv_usec / 1000));
-}
-
-long long	timer_get_ctime(t_philo philo)
-{
-	struct timeval	tod;
-	long long		ctime;
-
-	gettimeofday(&tod, NULL);
-	ctime = ((tod.tv_sec * 1000) + (tod.tv_usec / 1000)) - 
-		philo.data->time_start;
-	return (ctime);
+	philo = arg;
+	if (philo->phil_id % 2 == 0)
+		usleep((philo->data->time2eat * 1000) / 2);
+	return (0);
 }

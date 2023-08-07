@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 12:39:48 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/07 15:09:15 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,7 @@ typedef struct s_philo_data
 	long long		time_start;
 	long long		time_last_8;
 	int				death_num;
+	int				kill;
 	int				fork_num;
 	int				*fork_status;
 	int				num;
@@ -50,16 +51,17 @@ typedef struct s_philo
 {
 	t_philo_data	*data;
 	pthread_t		th;
+	int				phil_id;
 }			t_philo;
 
 //ft_utils.c
 int			ft_atoi(const char *str);
 void		ft_putstr_fd(char *s, int fd);
 //philo_utils.c
-void		philo_end(t_philo *philos);
 t_philo		philo_create(t_philo_data *data);
-int			philo_args_set(t_philo_data *data, char **av);
-int			philo_data_set(t_philo_data *data);
+void		philo_end(t_philo *philos);
+//routine_utils.c
+void		*routine(void *arg);
 //time_utils.c
 long long	timer_start(void);
 //extra_utils.c

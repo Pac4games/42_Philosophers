@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:09:14 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:41:06 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,10 +62,12 @@ void		philo_end(t_philo *philos);
 int			philo_start(t_philo *philos);
 int			philo_isdead(t_philo *philo);
 //fork_utils.c
-int			fork_hold(t_philo *philo, int left, int right);
+int			forks_hold(t_philo *philo, int left, int right);
+void		forks_drop(t_philo *philo, int left, int right);
 //time_utils.c
 long long	time_start(void);
 long long	get_ctime(t_philo philo);
+void		nap_time(t_philo *philo, int time2nap);
 void		print_philo_ts(t_philo *philo);
 //extra_utils.c
 int			ft_atoi(const char *str);

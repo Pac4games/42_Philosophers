@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:04:44 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:26:29 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ void	*routine(void *arg)
 	{
 		if (philo->data->stts == THINKING && !philo_isdead(philo))
 		{
-			if (!fork_hold(philo, philo->id - 1, philo->id % philo->data->num))
+			if (!forks_hold(philo, philo->id - 1, philo->id % philo->data->num))
 				return (0);
 		}
 	}

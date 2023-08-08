@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:42:09 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:11:20 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:22:26 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,16 @@ long long	get_ctime(t_philo philo)
 	ctime = ((tod.tv_sec * 1000) + (tod.tv_usec / 1000)) - 
 		philo.data->time_start;
 	return (ctime);
+}
+
+void	nap_time(t_philo *philo, int time2nap)
+{
+	long long	start;
+
+	start = time_start();
+	while (!philo_isdead(philo))
+		if (time_start() - start > time2nap)
+			break ;
 }
 
 void	print_philo_ts(t_philo *philo)

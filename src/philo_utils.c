@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:36:41 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:09:41 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:46:25 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,19 +22,6 @@ t_philo	philo_create(t_philo_data *data)
 	philo.data->time_last_8 = philo.data->time_start;
 	philo.data->fork_num = 0;
 	return (philo);
-}
-
-void	philo_end(t_philo *philos)
-{
-	int	p;
-
-	p = 0;
-	while (p < philos->data->num)
-		pthread_mutex_destroy(&philos->data->forks[p++]);
-	free(philos->data->forks);
-	pthread_mutex_destroy(&philos->data->death);
-	pthread_mutex_destroy(&philos->data->msg);
-	free(philos);
 }
 
 int	philo_start(t_philo *philos)
@@ -81,4 +68,21 @@ void	philo_eat(t_philo *philo)
 	philo->data->stts = EATING;
 	print_philo_ts(philo);
 	philo->data->time_last_8 = get_ctime(*philo);
+	nap_time(philo, philo->data->time2eat);
+	forks_drop(philo, philo->id - 1, philo->id % philo->data->num);
+	if (philo->data->eat_num > 0)
+		philo->data->eat_num--;
+}
+
+void	philo_end(t_philo *philos)
+{
+	int	p;
+
+	p = 0;
+	while (p < philos->data->num)
+		pthread_mutex_destroy(&philos->data->forks[p++]);
+	free(philos->data->forks);
+	pthread_mutex_destroy(&philos->data->death);
+	pthread_mutex_destroy(&philos->data->msg);
+	free(philos);
 }

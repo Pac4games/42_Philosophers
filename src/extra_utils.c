@@ -6,15 +6,54 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:30:48 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 16:46:52 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:10:05 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-#include <pthread.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <unistd.h>
+
+void	ft_putstr_fd(char *s, int fd)
+{
+	int	p;
+
+	if (!s)
+		return ;
+	p = 0;
+	while (s[p])
+	{
+		write(fd, &s[p], 1);
+		p++;
+	}
+}
+
+int	ft_atoi(const char *str)
+{
+	int			s;
+	long long	n;
+
+	s = 1;
+	n = 0;
+	while (*str == '\t' || *str == '\n' || *str == '\v' || *str == '\f'
+		|| *str == '\r' || *str == ' ')
+		str++;
+	if (*str == '-')
+	{
+		s *= -1;
+		str++;
+	}
+	else if (*str == '+')
+		str++;
+	while (*str >= 48 && *str <= 57)
+	{
+		n = (n * 10) + (s * (*str - '0'));
+		str++;
+		if (n > 2147483647)
+			return (-1);
+		if (n < -2147483648)
+			return (0);
+	}
+	return (n);
+}
 
 void	print_err(char *msg)
 {
@@ -22,39 +61,4 @@ void	print_err(char *msg)
 	ft_putstr_fd(msg, STDERR_FILENO);
 	write(STDERR_FILENO, "\n", 1);
 	exit(EXIT_FAILURE);
-}
-
-void	print_philo_status(t_philo *philo, int stts)
-{
-	pthread_mutex_lock(&(philo->data->msg));
-	if (stts == EATING && !philo_isdead(philo))
-		printf("%lld %d is eating\n", get_ctime(*philo), philo->id);
-	else if (stts == SLEEPING && !philo_isdead(philo))
-		printf("%lld %d is sleeping\n", get_ctime(*philo), philo->id);
-	else if (stts == THINKING && !philo_isdead(philo))
-		printf("%lld %d is thinking\n", get_ctime(*philo), philo->id);
-	else if (stts == HAS_FORK && !philo_isdead(philo))
-		printf("%lld %d has taken a fork", get_ctime(*philo), philo->id);
-	else if (stts == DEAD)
-		printf("%lld %d died", get_ctime(*philo), philo->id);
-	pthread_mutex_unlock(&(philo->data->msg));
-}
-
-void	check_args(char **av)
-{
-	int	p;
-	int	i;
-
-	p = 1;
-	while (av[p])
-	{
-		i = 0;
-		while (av[p][i])
-		{
-			if (av[p][i] <= '0' && av[p][i] >= '9')
-				print_err("one or more invalid arguments.");
-			i++;
-		}
-		p++;
-	}
 }

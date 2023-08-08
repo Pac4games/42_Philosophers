@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:36:41 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 16:57:26 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:09:41 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,6 @@ void	philo_end(t_philo *philos)
 	free(philos);
 }
 
-int	philo_isdead(t_philo *philo)
-{
-	pthread_mutex_lock(&(philo->data->death));
-	if (philo->data->death_num != 0)
-	{
-		pthread_mutex_unlock(&(philo->data->death));
-		return (1);
-	}
-	if (philo->data->time2die < get_ctime(*philo) - philo->data->time_last_8)
-	{
-		philo->data->death_num++;
-		pthread_mutex_unlock(&(philo->data->death));
-		print_philo_status(philo, DEAD);
-		return (1);
-	}
-	pthread_mutex_unlock(&(philo->data->death));
-	return (0);
-}
-
 int	philo_start(t_philo *philos)
 {
 	int	p;
@@ -73,4 +54,31 @@ int	philo_start(t_philo *philos)
 		philos[p].id = p;
 	}
 	return (1);
+}
+
+int	philo_isdead(t_philo *philo)
+{
+	pthread_mutex_lock(&(philo->data->death));
+	if (philo->data->death_num != 0)
+	{
+		pthread_mutex_unlock(&(philo->data->death));
+		return (1);
+	}
+	if (philo->data->time2die < get_ctime(*philo) - philo->data->time_last_8)
+	{
+		philo->data->death_num++;
+		pthread_mutex_unlock(&(philo->data->death));
+		philo->data->stts = DEAD;
+		print_philo_ts(philo);
+		return (1);
+	}
+	pthread_mutex_unlock(&(philo->data->death));
+	return (0);
+}
+
+void	philo_eat(t_philo *philo)
+{
+	philo->data->stts = EATING;
+	print_philo_ts(philo);
+	philo->data->time_last_8 = get_ctime(*philo);
 }

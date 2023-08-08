@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 15:37:43 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:09:14 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,24 +54,22 @@ typedef struct s_philo
 	int				id;
 }			t_philo;
 
-//ft_utils.c
-int			ft_atoi(const char *str);
-void		ft_putstr_fd(char *s, int fd);
+//main.c
+void		*routine(void *arg);
 //philo_utils.c
 t_philo		philo_create(t_philo_data *data);
 void		philo_end(t_philo *philos);
 int			philo_start(t_philo *philos);
 int			philo_isdead(t_philo *philo);
-//routine_utils.c
-void		*routine(void *arg);
 //fork_utils.c
 int			fork_hold(t_philo *philo, int left, int right);
 //time_utils.c
 long long	time_start(void);
 long long	get_ctime(t_philo philo);
+void		print_philo_ts(t_philo *philo);
 //extra_utils.c
+int			ft_atoi(const char *str);
+void		ft_putstr_fd(char *s, int fd);
 void		print_err(char *msg);
-void		check_args(char **av);
-void		print_philo_status(t_philo *philo, int stts);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:52:53 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 15:36:29 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:09:47 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,8 @@ static void	get_fork(t_philo *philo, int pos)
 	{
 		philo->data->fork_stts[pos] = TAKEN;
 		philo->data->fork_num++;
-		print_philo_status(philo, HAS_FORK);
+		philo->data->stts = HAS_FORK;
+		print_philo_ts(philo);
 	}
 	pthread_mutex_unlock(&(philo->data->forks[pos]));
 }

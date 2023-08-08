@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:42:09 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 16:02:19 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:10:13 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,20 @@ long long	get_ctime(t_philo philo)
 	ctime = ((tod.tv_sec * 1000) + (tod.tv_usec / 1000)) - 
 		philo.data->time_start;
 	return (ctime);
+}
+
+void	philo_print_stts(t_philo *philo)
+{
+	pthread_mutex_lock(&(philo->data->msg));
+	if (philo->data->stts == EATING && !philo_isdead(philo))
+		printf("%lld %d is eating\n", get_ctime(*philo), philo->id);
+	else if (philo->data->stts == SLEEPING && !philo_isdead(philo))
+		printf("%lld %d is sleeping\n", get_ctime(*philo), philo->id);
+	else if (philo->data->stts == THINKING && !philo_isdead(philo))
+		printf("%lld %d is thinking\n", get_ctime(*philo), philo->id);
+	else if (philo->data->stts == HAS_FORK && !philo_isdead(philo))
+		printf("%lld %d has taken a fork", get_ctime(*philo), philo->id);
+	else if (philo->data->stts == DEAD)
+		printf("%lld %d died", get_ctime(*philo), philo->id);
+	pthread_mutex_unlock(&(philo->data->msg));
 }

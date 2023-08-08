@@ -6,29 +6,11 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:26:29 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:56:39 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-void	*routine(void *arg)
-{
-	t_philo	*philo;
-
-	philo = arg;
-	if (philo->id % 2 == 0)
-		usleep((philo->data->time2eat * 1000) / 2);
-	while (philo->data->eat_num != 0 && !philo_isdead(philo))
-	{
-		if (philo->data->stts == THINKING && !philo_isdead(philo))
-		{
-			if (!forks_hold(philo, philo->id - 1, philo->id % philo->data->num))
-				return (0);
-		}
-	}
-	return (0);
-}
 
 static void	check_args(char **av)
 {

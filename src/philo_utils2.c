@@ -1,47 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   philo_utils.c                                      :+:      :+:    :+:   */
+/*   philo_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/08/07 12:36:41 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:46:25 by paugonca         ###   ########.fr       */
+/*   Created: 2023/08/08 17:56:17 by paugonca          #+#    #+#             */
+/*   Updated: 2023/08/08 18:04:39 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-t_philo	philo_create(t_philo_data *data)
-{
-	t_philo	philo;
-
-	philo.data = data;
-	philo.data->stts = THINKING;
-	philo.data->time_start = time_start();
-	philo.data->time_last_8 = philo.data->time_start;
-	philo.data->fork_num = 0;
-	return (philo);
-}
-
-int	philo_start(t_philo *philos)
-{
-	int	p;
-
-	p = 0;
-	if (pthread_mutex_init(&(philos->data->death), NULL) || 
-		pthread_mutex_init(&(philos->data->msg), NULL))
-		return (0);
-	while (p < philos->data->num)
-		if (pthread_mutex_init(&(philos->data->forks[p++]), NULL))
-			return (0);
-	p = 0;
-	while (p < philos->data->num)
-	{
-		philos[p].id = p;
-	}
-	return (1);
-}
 
 int	philo_isdead(t_philo *philo)
 {
@@ -74,15 +43,34 @@ void	philo_eat(t_philo *philo)
 		philo->data->eat_num--;
 }
 
-void	philo_end(t_philo *philos)
+void	philo_sleep(t_philo *philo)
 {
-	int	p;
+	philo->data->stts = SLEEPING;
+	print_philo_ts(philo);
+	nap_time(philo, philo->data->time2sleep);
+}
 
-	p = 0;
-	while (p < philos->data->num)
-		pthread_mutex_destroy(&philos->data->forks[p++]);
-	free(philos->data->forks);
-	pthread_mutex_destroy(&philos->data->death);
-	pthread_mutex_destroy(&philos->data->msg);
-	free(philos);
+void	*philo_routine(void *arg)
+{
+	t_philo	*philo;
+
+	philo = arg;
+	if (philo->id % 2 == 0)
+		usleep((philo->data->time2eat * 1000) / 2);
+	while (philo->data->eat_num != 0 && !philo_isdead(philo))
+	{
+		if (philo->data->stts == THINKING && !philo_isdead(philo))
+		{
+			if (!forks_hold(philo, philo->id - 1, philo->id % philo->data->num))
+				return (0);
+		}
+		else if (philo->data->stts == EATING && !philo_isdead(philo))
+			philo_sleep(philo);
+		else if (philo->data->stts == SLEEPING && !philo_isdead(philo))
+		{
+			philo->data->stts = THINKING;
+			print_philo_ts(philo);
+		}
+	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 #    By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 13:22:21 by paugonca          #+#    #+#              #
-#    Updated: 2023/08/08 17:00:08 by paugonca         ###   ########.fr        #
+#    Updated: 2023/08/08 17:55:39 by paugonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,8 @@ RM			= rm -f
 MKD			= mkdir
 
 SRC_NAME	= main.c			\
-			  philo_utils.c		\
+			  philo_utils1.c	\
+			  philo_utils2.c	\
 			  fork_utils.c		\
 			  time_utils.c		\
 			  extra_utils.c		\

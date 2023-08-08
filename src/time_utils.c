@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:42:09 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:10:13 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 17:11:20 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ long long	get_ctime(t_philo philo)
 	return (ctime);
 }
 
-void	philo_print_stts(t_philo *philo)
+void	print_philo_ts(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->data->msg));
 	if (philo->data->stts == EATING && !philo_isdead(philo))

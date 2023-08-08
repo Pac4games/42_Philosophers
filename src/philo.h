@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 17:09:20 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:37:43 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 # define SLEEPING 3
 # define HAS_FORK 4
 # define DEAD 5
-# define AVAILABLE 0
+# define FREE 0
 # define TAKEN 1
 
 typedef struct s_philo_data
@@ -38,7 +38,7 @@ typedef struct s_philo_data
 	int				death_num;
 	int				eat_num;
 	int				fork_num;
-	int				*fork_status;
+	int				*fork_stts;
 	int				num;
 	int				time2die;
 	int				time2eat;
@@ -64,6 +64,8 @@ int			philo_start(t_philo *philos);
 int			philo_isdead(t_philo *philo);
 //routine_utils.c
 void		*routine(void *arg);
+//fork_utils.c
+int			fork_hold(t_philo *philo, int left, int right);
 //time_utils.c
 long long	time_start(void);
 long long	get_ctime(t_philo philo);

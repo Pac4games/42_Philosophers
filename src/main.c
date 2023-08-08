@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/07 15:01:54 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 15:27:30 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@ static int	data_set(t_philo_data *data)
 	data->forks = malloc(sizeof(pthread_mutex_t) * data->num);
 	if (!data->forks)
 		return (0);
-	data->fork_status = malloc(sizeof(int) * data->num);
-	if (!data->fork_status)
+	data->fork_stts = malloc(sizeof(int) * data->num);
+	if (!data->fork_stts)
 	{
 		free(data->forks);
 		return (0);
 	}
-	memset(data->fork_status, 0, data->num * sizeof(int));
+	memset(data->fork_stts, 0, data->num * sizeof(int));
 	return (1);
 }
 
@@ -57,7 +57,7 @@ int	main(int ac, char **av)
 	if (!philos)
 	{
 		free(data.forks);
-		free(data.fork_status);
+		free(data.fork_stts);
 		return (0);
 	}
 	p = 0;

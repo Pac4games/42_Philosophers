@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 17:56:17 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 18:04:39 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:24:09 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	philo_isdead(t_philo *philo)
 	return (0);
 }
 
-void	philo_eat(t_philo *philo)
+static void	philo_eat(t_philo *philo)
 {
 	philo->data->stts = EATING;
 	print_philo_ts(philo);
@@ -43,7 +43,7 @@ void	philo_eat(t_philo *philo)
 		philo->data->eat_num--;
 }
 
-void	philo_sleep(t_philo *philo)
+static void	philo_sleep(t_philo *philo)
 {
 	philo->data->stts = SLEEPING;
 	print_philo_ts(philo);
@@ -63,6 +63,7 @@ void	*philo_routine(void *arg)
 		{
 			if (!forks_hold(philo, philo->id - 1, philo->id % philo->data->num))
 				return (0);
+			philo_eat(philo);
 		}
 		else if (philo->data->stts == EATING && !philo_isdead(philo))
 			philo_sleep(philo);

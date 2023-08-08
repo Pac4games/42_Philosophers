@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:36:41 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:57:54 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:20:19 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,9 @@ int	philo_start(t_philo *philos)
 	while (p < philos->data->num)
 	{
 		philos[p].id = p;
+		if (pthread_create(&(philos[p]).th, NULL, philo_routine, (void *) &(philos[p])))
+			return (0);
+		p++;
 	}
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:56:39 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:23:09 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,17 +71,19 @@ int	main(int ac, char **av)
 		print_err("invalid number of arguments");
 	check_args(av);
 	if (!args_set(&data, av))
-		return (0);
+		print_err("failed to allocate memory");
 	philos = malloc(sizeof(t_philo) * data.num);
 	if (!philos)
 	{
 		free(data.forks);
 		free(data.fork_stts);
-		return (0);
+		print_err("failed to allocate memory.");
 	}
 	p = 0;
 	while (p < data.num)
 		philos[p++] = philo_create(&data);
+	if (!philo_start(philos))
+		print_err("failed to initialize threads or mutex's.");
 	philo_end(philos);
 	return (EXIT_SUCCESS);
 }

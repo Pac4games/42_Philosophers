@@ -6,7 +6,7 @@
 #    By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 13:22:21 by paugonca          #+#    #+#              #
-#    Updated: 2023/08/08 17:55:39 by paugonca         ###   ########.fr        #
+#    Updated: 2023/08/08 18:24:23 by paugonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,6 @@ SRC_NAME	= main.c			\
 			  fork_utils.c		\
 			  time_utils.c		\
 			  extra_utils.c		\
-			  routine_utils.c	\
 
 SRC			= $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJ			= $(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRC))

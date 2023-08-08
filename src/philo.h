@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:57:19 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/08 18:18:40 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ typedef struct s_philo
 t_philo		philo_create(t_philo_data *data);
 void		philo_end(t_philo *philos);
 int			philo_start(t_philo *philos);
-int			philo_isdead(t_philo *philo);
 //philo_utils2.c
+int			philo_isdead(t_philo *philo);
 void		*philo_routine(void *arg);
 //fork_utils.c
 int			forks_hold(t_philo *philo, int left, int right);

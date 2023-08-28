@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:28:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/09 14:57:11 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 11:48:37 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,13 @@ int	main(int ac, char **av)
 		philos[p++] = philo_create(&data);
 	if (!philo_start(philos))
 		print_err("failed to initialize threads or mutex's.");
+	//Debug start
+	printf("philo num: %d\ntime2die: %d\ntime2eat: %d\ntime2sleep: %d\n", philos->data->num, philos->data->time2die, philos->data->time2eat, philos->data->time2sleep);
+	if (philos->data->hunger != -1)
+		printf("hunger: %d\n", philos->data->hunger);
+	printf("id: %d\n", philos->id);
+	printf("\n");
+	//Debug end
 	philo_end(philos);
 	return (EXIT_SUCCESS);
 }

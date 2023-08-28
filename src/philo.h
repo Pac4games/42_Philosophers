@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:50 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 15:51:59 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:06:30 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,18 +64,19 @@ typedef struct s_philo
 	t_fork			fork_right;
 	pthread_t		id;
 	pthread_mutex_t	*msg;
-	pthread_mutex_t	*isdead;
+	pthread_mutex_t	*death;
 	t_data			*data;
 }			t_philo;
 
-//main.c
-
 //extra_utils.c
-int			ft_atoi(char *str);
-void		print_err(char *msg);
+int		ft_atoi(char *str);
+void	print_err(char *msg);
 //init_utils.c
-void		init_forks(t_fork **forks, int philo_num);
+void	init_forks(t_fork **forks, int philo_num);
+//check_utils.c
+void	check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex);
+void	check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2);
 //philo_utils.c
-void		philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *isdead);
+void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *isdead);
 
 #endif

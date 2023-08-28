@@ -1,0 +1,60 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/28 12:30:16 by paugonca          #+#    #+#             */
+/*   Updated: 2023/08/28 15:50:57 by paugonca         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "philo.h"
+
+static void	check_args(char **av)
+{
+	int	p;
+	int	i;
+
+	p = 1;
+	while (av[p])
+	{
+		i = 0;
+		while (av[p][i])
+		{
+			if (av[p][i] <= '0' && av[p][i] >= '9')
+				print_err("one or more invalid arguments.");
+			i++;
+		}
+		p++;
+	}
+}
+
+static void	philo_data_set(t_data *data, char **av)
+{
+	data->num = ft_atoi(av[1]);
+	data->time2die = ft_atoi(av[2]);
+	data->time2eat = ft_atoi(av[3]);
+	data->time2sleep = ft_atoi(av[4]);
+	if (av[5])
+		data->hunger = ft_atoi(av[5]);
+}
+
+int	main(int ac, char **av)
+{
+	int		p;
+	int		dead;
+	t_data	data;
+	t_fork	*forks;
+	t_philo	*philos;
+
+	if (ac != 5 && ac != 6)
+		print_err("invalid number of arguments");
+	check_args(av);
+	philo_data_set(&data, av);
+	init_forks(&forks, data.num);
+	if (!forks)
+		print_err("failed to allocate memory for the forks");
+	return (EXIT_SUCCESS);
+}

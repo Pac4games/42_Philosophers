@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/08 14:52:53 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:31:37 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:06:57 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,11 +15,11 @@
 static void	get_fork(t_philo *philo, int pos)
 {
 	pthread_mutex_lock(&(philo->data->forks[pos]));
-	if (philo->data->fork_stts[pos] == FREE)
+	if (philo->data->fork_stts[pos] == E_FREE)
 	{
-		philo->data->fork_stts[pos] = TAKEN;
+		philo->data->fork_stts[pos] = E_TAKEN;
 		philo->data->fork_num++;
-		philo->data->stts = HAS_FORK;
+		philo->data->stts = E_HAS_FORK;
 		print_philo_ts(philo);
 	}
 	pthread_mutex_unlock(&(philo->data->forks[pos]));
@@ -49,10 +49,10 @@ int	forks_hold(t_philo *philo, int left, int right)
 void	forks_drop(t_philo *philo, int left, int right)
 {
 	pthread_mutex_lock(&(philo->data->forks[right]));
-	philo->data->fork_stts[right] = FREE;
+	philo->data->fork_stts[right] = E_FREE;
 	pthread_mutex_unlock(&(philo->data->forks[right]));
 	pthread_mutex_lock(&(philo->data->forks[left]));
-	philo->data->fork_stts[left] = FREE;
+	philo->data->fork_stts[left] = E_FREE;
 	pthread_mutex_unlock(&(philo->data->forks[left]));
 	philo->data->fork_num = 0;
 }

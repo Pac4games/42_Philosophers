@@ -6,14 +6,14 @@
 #    By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/07/25 13:22:21 by paugonca          #+#    #+#              #
-#    Updated: 2023/08/08 18:24:23 by paugonca         ###   ########.fr        #
+#    Updated: 2023/08/28 11:57:11 by paugonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= philo
 
 CC			= cc
-CFLAGS		= -Wall -Wextra -Werror -pthread -g 
+CFLAGS		= -Wall -Wextra -Werror -pthread -g -fsanitize=address 
 
 RM			= rm -f
 MKD			= mkdir

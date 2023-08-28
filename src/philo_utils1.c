@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/07 12:36:41 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 11:53:06 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:07:19 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ t_philo	philo_create(t_philo_data *data)
 	t_philo	philo;
 
 	philo.data = data;
-	philo.data->stts = THINKING;
+	philo.data->stts = E_THINKING;
 	philo.data->time_start = time_start();
 	philo.data->time_last_8 = philo.data->time_start;
 	philo.data->fork_num = 0;

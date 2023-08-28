@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/04 15:42:09 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/08 17:22:26 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:06:04 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,15 +44,15 @@ void	nap_time(t_philo *philo, int time2nap)
 void	print_philo_ts(t_philo *philo)
 {
 	pthread_mutex_lock(&(philo->data->msg));
-	if (philo->data->stts == EATING && !philo_isdead(philo))
+	if (philo->data->stts == E_EATING && !philo_isdead(philo))
 		printf("%lld %d is eating\n", get_ctime(*philo), philo->id);
-	else if (philo->data->stts == SLEEPING && !philo_isdead(philo))
+	else if (philo->data->stts == E_SLEEPING && !philo_isdead(philo))
 		printf("%lld %d is sleeping\n", get_ctime(*philo), philo->id);
-	else if (philo->data->stts == THINKING && !philo_isdead(philo))
+	else if (philo->data->stts == E_THINKING && !philo_isdead(philo))
 		printf("%lld %d is thinking\n", get_ctime(*philo), philo->id);
-	else if (philo->data->stts == HAS_FORK && !philo_isdead(philo))
+	else if (philo->data->stts == E_HAS_FORK && !philo_isdead(philo))
 		printf("%lld %d has taken a fork", get_ctime(*philo), philo->id);
-	else if (philo->data->stts == DEAD)
+	else if (philo->data->stts == E_DEAD)
 		printf("%lld %d died", get_ctime(*philo), philo->id);
 	pthread_mutex_unlock(&(philo->data->msg));
 }

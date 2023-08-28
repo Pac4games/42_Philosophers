@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/25 12:00:51 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 11:53:17 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 12:05:38 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@
 # define FREE 0
 # define TAKEN 1
 
+typedef enum e_philo_stts
+{
+	E_THINKING,
+	E_EATING,
+	E_SLEEPING,
+	E_DEAD,
+	E_HAS_FORK
+}			t_philo_stts;
+
+typedef enum e_fork_stts
+{
+	E_FREE,
+	E_TAKEN
+}			t_fork_stts;
+
 typedef struct s_philo_data
 {
 	pthread_mutex_t	death;
@@ -38,13 +53,13 @@ typedef struct s_philo_data
 	int				death_num;
 	int				eat_num;
 	int				fork_num;
-	int				*fork_stts;
+	t_fork_stts		*fork_stts;
 	int				num;
 	int				time2die;
 	int				time2eat;
 	int				time2sleep;
 	int				hunger;
-	int				stts;
+	t_philo_stts	stts;
 }			t_philo_data;
 
 typedef struct s_philo

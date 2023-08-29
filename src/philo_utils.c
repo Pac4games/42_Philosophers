@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:38:46 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 15:50:39 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:32:10 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,19 @@ void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *isdead)
 		else
 			(*philos)[p].fork_left = (*forks)[p - 2];
 		(*philos)[p++].data = data;
+	}
+}
+
+void	philo_routine(void *arg)
+{
+	t_philo *philo;
+
+	philo = ((t_philo *)arg);
+	philo->time_last8 = 0;
+	if (!((*philo).num % 2))
+		usleep(10000);
+	while (!philo_isdead(philo))
+	{
+
 	}
 }

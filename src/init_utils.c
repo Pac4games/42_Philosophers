@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:00:52 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 16:10:11 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:35:12 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,22 +15,22 @@
 void	init_forks(t_fork **forks, int philo_num)
 {
 	int				p;
-	t_fork_stts		*forks_stts;
+	int				*forks_taken;
 	pthread_mutex_t	*mutex;
 
-	forks_stts = malloc(philo_num * sizeof(t_fork_stts));
-	if (!forks_stts)
+	forks_taken = malloc(philo_num * sizeof(int));
+	if (!forks_taken)
 		print_err("failed to allocate memory");
 	p = 0;
 	while (p < philo_num)
-		forks_stts[p++] = E_FREE;
+		forks_taken[p++] = FALSE;
 	(*forks) = malloc(philo_num * sizeof(t_fork));
 	mutex = malloc(philo_num * sizeof(pthread_mutex_t));
 	check_fork_malloc(forks, mutex);
 	p = -1;
 	while (++p < philo_num)
 	{
-		(*forks)[p].stts = &(forks_stts[p]);
+		(*forks)[p].taken = &(forks_taken[p]);
 		pthread_mutex_init(&((mutex)[p]), NULL);
 		(*forks)[p].mutex = &(mutex[p]); 
 	}
@@ -61,4 +61,8 @@ void	init_philos(t_philo **philos, t_data *data, t_fork **forks, int *dead)
 
 	philos_gen(philos, data, forks, dead);
 	init_mutex(philos);
+	data->time_start = time_set();
+	while (p < data->num)
+	{
+	}
 }

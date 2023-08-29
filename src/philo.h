@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:50 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 16:06:30 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/28 16:43:52 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,6 @@
 # define TRUE 1
 # define FALSE 0
 
-typedef enum e_fork_stts
-{
-	E_TAKEN,
-	E_FREE
-}			t_fork_stts;
-
 typedef enum e_philo_stts
 {
 	E_ASLEEP,
@@ -39,7 +33,7 @@ typedef enum e_philo_stts
 
 typedef struct s_fork
 {
-	t_fork_stts		*stts;
+	int				*taken;
 	pthread_mutex_t	*mutex;
 }			t_fork;
 
@@ -69,14 +63,19 @@ typedef struct s_philo
 }			t_philo;
 
 //extra_utils.c
-int		ft_atoi(char *str);
-void	print_err(char *msg);
+int				ft_atoi(char *str);
+void			print_err(char *msg);
 //init_utils.c
-void	init_forks(t_fork **forks, int philo_num);
+void			init_forks(t_fork **forks, int philo_num);
 //check_utils.c
-void	check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex);
-void	check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2);
+void			check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex);
+void			check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2);
 //philo_utils.c
-void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *isdead);
+void			philos_gen(t_philo **phils, t_data *d, t_fork **f, int *dead);
+//time_utils.c
+unsigned long	time_set(void);
+unsigned long	get_cur_time(t_philo *philo);
+//stts_utils.c
+int				philo_isdead(t_philo *philo);
 
 #endif

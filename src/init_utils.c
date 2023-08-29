@@ -6,11 +6,23 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:00:52 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 12:00:47 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:28:12 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	philo_data_set(t_data *data, char **av)
+{
+	data->num = ft_atoi(av[1]);
+	data->time2die = ft_atoi(av[2]);
+	data->time2eat = ft_atoi(av[3]);
+	data->time2sleep = ft_atoi(av[4]);
+	if (av[5])
+		data->hunger = ft_atoi(av[5]);
+	else
+		data->hunger = -1;
+}
 
 void	init_forks(t_fork **forks, int philo_num)
 {
@@ -62,7 +74,33 @@ void	init_philos(t_philo **philos, t_data *data, t_fork **forks, int *d_num)
 	philos_gen(philos, data, forks, d_num);
 	init_mutex(philos);
 	data->time_start = philo_set_time();
+	p = 0;
 	while (p < data->num)
 	{
+		if (pthread_create(&philos[p]->id, NULL, philo_routine, \
+		(void *)&philos[p]))
+			print_err("failed to create threads");
 	}
+}
+
+int	end_program(t_philo *philos, t_fork *forks, t_data data)
+{
+	int	p;
+
+	p = 0;
+	while (p < data.num)
+	{
+		pthread_mutex_destroy(philos[p].fork_right.mutex);
+		pthread_mutex_destroy(philos[p].fork_left.mutex);
+		pthread_mutex_destroy(forks[p++].mutex);
+	}
+	pthread_mutex_destroy(philos->msg);
+	pthread_mutex_destroy(philos->death);
+	free(philos->msg);
+	free(philos->death);
+	free(philos);
+	free(forks->taken);
+	free(forks->mutex);
+	free(forks);
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:11:04 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 12:00:31 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:29:34 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ unsigned long	philo_set_time(void)
 
 	gettimeofday(&time, NULL);
 	return ((time.tv_sec * 1000) + (time.tv_usec / 1000));
-} 
+}
 
 unsigned long	philo_get_time(t_philo *philo)
 {

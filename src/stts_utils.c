@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:27:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 12:11:49 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 15:22:42 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,4 +68,6 @@ int	philo_eat(t_philo *philo)
 	philo->time_last8 = philo_get_time(philo);
 	if (philo_sleep(philo, philo->data->time2eat))
 		return (TRUE);
+	philo_drop_forks(philo);
+	return (FALSE);
 }

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:50 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 11:59:50 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 16:30:14 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,6 @@
 
 # define TRUE 1
 # define FALSE 0
-
-typedef enum e_philo_stts
-{
-	E_ASLEEP,
-	E_DEAD,
-	E_EATING,
-	E_THINKING,
-	E_HAS_FORK
-}			t_philo_stts;
 
 typedef struct s_fork
 {
@@ -66,7 +57,10 @@ typedef struct s_philo
 int				ft_atoi(char *str);
 void			print_err(char *msg);
 //init_utils.c
+void			philo_data_set(t_data *data, char **av);
 void			init_forks(t_fork **forks, int philo_num);
+void			init_philos(t_philo **p, t_data *d, t_fork **f, int *d_num);
+int				end_program(t_philo *philos, t_fork *forks, t_data data);
 //check_utils.c
 void			check_args(char **av);
 void			check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex);
@@ -74,14 +68,18 @@ void			check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2);
 //philo_utils.c
 void			philos_gen(t_philo **phils, t_data *d, t_fork **f, int *ded);
 void			print_philo_msg(t_philo *philo, char *msg);
+void			*philo_routine(void *arg);
 //time_utils.c
 unsigned long	philo_set_time(void);
 unsigned long	philo_get_time(t_philo *philo);
 //stts_utils.c
 int				philo_isdead(t_philo *philo);
 int				philo_kill(t_philo *philo);
+int				philo_sleep(t_philo *philo, unsigned long time2nap);
+int				philo_eat(t_philo *philo);
 //eat_utils.c
 void			philo_get_forks(t_philo *philo);
 void			print_fork_taken(t_philo *philo);
+void			philo_drop_forks(t_philo *philo);
 
 #endif

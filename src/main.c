@@ -6,30 +6,11 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:16 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 15:50:57 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:35:58 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-static void	check_args(char **av)
-{
-	int	p;
-	int	i;
-
-	p = 1;
-	while (av[p])
-	{
-		i = 0;
-		while (av[p][i])
-		{
-			if (av[p][i] <= '0' && av[p][i] >= '9')
-				print_err("one or more invalid arguments.");
-			i++;
-		}
-		p++;
-	}
-}
 
 static void	philo_data_set(t_data *data, char **av)
 {
@@ -44,7 +25,7 @@ static void	philo_data_set(t_data *data, char **av)
 int	main(int ac, char **av)
 {
 	int		p;
-	int		dead;
+	int		death_num;
 	t_data	data;
 	t_fork	*forks;
 	t_philo	*philos;

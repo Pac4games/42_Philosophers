@@ -6,11 +6,30 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:04:40 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 16:06:07 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 10:35:21 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	check_args(char **av)
+{
+	int	p;
+	int	i;
+
+	p = 1;
+	while (av[p])
+	{
+		i = 0;
+		while (av[p][i])
+		{
+			if (av[p][i] <= '0' && av[p][i] >= '9')
+				print_err("one or more invalid arguments.");
+			i++;
+		}
+		p++;
+	}
+}
 
 void	check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex)
 {

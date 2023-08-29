@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:00:52 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 16:35:12 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:00:47 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,13 +55,13 @@ static void	init_mutex(t_philo **philos)
 	}
 }
 
-void	init_philos(t_philo **philos, t_data *data, t_fork **forks, int *dead)
+void	init_philos(t_philo **philos, t_data *data, t_fork **forks, int *d_num)
 {
 	int	p;
 
-	philos_gen(philos, data, forks, dead);
+	philos_gen(philos, data, forks, d_num);
 	init_mutex(philos);
-	data->time_start = time_set();
+	data->time_start = philo_set_time();
 	while (p < data->num)
 	{
 	}

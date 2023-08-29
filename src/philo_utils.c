@@ -6,13 +6,13 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:38:46 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 16:32:10 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 12:01:01 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *isdead)
+void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *ded)
 {
 	int	p;
 
@@ -22,7 +22,7 @@ void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *isdead)
 	p = 0;
 	while (p < data->num)
 	{
-		(*philos)[p].stts = isdead;
+		(*philos)[p].isdead = ded;
 		(*philos)[p].eat_num = 0;
 		(*philos)[p].num = p;
 		(*philos)[p].fork_right = (*forks)[p];
@@ -46,4 +46,11 @@ void	philo_routine(void *arg)
 	{
 
 	}
+}
+
+void	print_philo_msg(t_philo *philo, char *msg)
+{
+	pthread_mutex_lock(philo->msg);
+	printf("%lu %d %s\n", philo_get_time(philo), philo->num, msg);
+	pthread_mutex_unlock(philo->msg);
 }

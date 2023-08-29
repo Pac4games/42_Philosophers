@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:50 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/28 16:43:52 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/29 11:59:50 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,9 +51,9 @@ typedef struct s_philo
 {
 	int				num;
 	int				eat_num;
+	int				*isdead;
 	unsigned long	time_start;
 	unsigned long	time_last8;
-	int				*stts;
 	t_fork			fork_left;
 	t_fork			fork_right;
 	pthread_t		id;
@@ -68,14 +68,20 @@ void			print_err(char *msg);
 //init_utils.c
 void			init_forks(t_fork **forks, int philo_num);
 //check_utils.c
+void			check_args(char **av);
 void			check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex);
 void			check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2);
 //philo_utils.c
-void			philos_gen(t_philo **phils, t_data *d, t_fork **f, int *dead);
+void			philos_gen(t_philo **phils, t_data *d, t_fork **f, int *ded);
+void			print_philo_msg(t_philo *philo, char *msg);
 //time_utils.c
-unsigned long	time_set(void);
-unsigned long	get_cur_time(t_philo *philo);
+unsigned long	philo_set_time(void);
+unsigned long	philo_get_time(t_philo *philo);
 //stts_utils.c
 int				philo_isdead(t_philo *philo);
+int				philo_kill(t_philo *philo);
+//eat_utils.c
+void			philo_get_forks(t_philo *philo);
+void			print_fork_taken(t_philo *philo);
 
 #endif

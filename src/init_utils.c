@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:00:52 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 16:28:12 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/30 16:16:58 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	init_forks(t_fork **forks, int philo_num)
 	}
 }
 
-static void	init_mutex(t_philo **philos)
+static void	init_mutex(t_philo **philos, int num)
 {
 	int				p;
 	pthread_mutex_t	*msg;
@@ -60,19 +60,19 @@ static void	init_mutex(t_philo **philos)
 	if (pthread_mutex_init(msg, NULL) || pthread_mutex_init(death, NULL))
 		printf("failed to create mutex");
 	p = 0;
-	while (p < (*philos)->data->num)
+	while (p < num)
 	{
 		(*philos)[p].msg = msg;
-		(*philos)[p].death = death;
+		(*philos)[p++].death = death;
 	}
 }
 
-void	init_philos(t_philo **philos, t_data *data, t_fork **forks, int *d_num)
+void	init_philos(t_philo **philos, t_data *data, t_fork **forks)
 {
 	int	p;
 
-	philos_gen(philos, data, forks, d_num);
-	init_mutex(philos);
+	philos_gen(philos, data, forks);
+	init_mutex(philos, data->num);
 	data->time_start = philo_set_time();
 	p = 0;
 	while (p < data->num)

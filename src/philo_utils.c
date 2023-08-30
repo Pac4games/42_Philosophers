@@ -6,13 +6,13 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:38:46 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 16:29:51 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:59:20 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *ded)
+void	philos_gen(t_philo **philos, t_data *data, t_fork **forks)
 {
 	int	p;
 
@@ -22,15 +22,15 @@ void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *ded)
 	p = 0;
 	while (p < data->num)
 	{
-		philos[p]->isdead = ded;
-		philos[p]->eat_num = 0;
-		philos[p]->num = p;
-		philos[p]->fork_right = (*forks)[p];
+		(*philos)[p].isdead = FALSE;
+		(*philos)[p].eat_num = 0;
+		(*philos)[p].num = p;
+		(*philos)[p].fork_right = (*forks)[p];
 		if (p == 0)
-			philos[p]->fork_left = (*forks)[data->num - 1];
+			(*philos)[p].fork_left = (*forks)[data->num - 1];
 		else
-			philos[p]->fork_left = (*forks)[p - 2];
-		philos[p++]->data = data;
+			(*philos)[p].fork_left = (*forks)[p];
+		(*philos)[p++].data = data;
 	}
 }
 

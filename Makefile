@@ -6,7 +6,7 @@
 #    By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/08/28 12:33:35 by paugonca          #+#    #+#              #
-#    Updated: 2023/08/29 11:33:22 by paugonca         ###   ########.fr        #
+#    Updated: 2023/08/29 16:31:02 by paugonca         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,7 +24,8 @@ SRC_NAME	= main.c		\
 			  init_utils.c	\
 			  stts_utils.c	\
 			  philo_utils.c	\
-			  time_utils.c
+			  time_utils.c	\
+			  eat_utils.c
 
 SRC			= $(addprefix $(SRC_PATH)/, $(SRC_NAME))
 OBJ			= $(patsubst $(SRC_PATH)/%.c, $(OBJ_PATH)/%.o, $(SRC))

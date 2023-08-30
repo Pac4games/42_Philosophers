@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:50 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 16:30:14 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/30 15:15:55 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,14 +59,14 @@ void			print_err(char *msg);
 //init_utils.c
 void			philo_data_set(t_data *data, char **av);
 void			init_forks(t_fork **forks, int philo_num);
-void			init_philos(t_philo **p, t_data *d, t_fork **f, int *d_num);
+void			init_philos(t_philo **p, t_data *d, t_fork **f);
 int				end_program(t_philo *philos, t_fork *forks, t_data data);
 //check_utils.c
 void			check_args(char **av);
 void			check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex);
 void			check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2);
 //philo_utils.c
-void			philos_gen(t_philo **phils, t_data *d, t_fork **f, int *ded);
+void			philos_gen(t_philo **phils, t_data *d, t_fork **f);
 void			print_philo_msg(t_philo *philo, char *msg);
 void			*philo_routine(void *arg);
 //time_utils.c

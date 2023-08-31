@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:00:52 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/30 16:16:58 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:11:58 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,11 +74,11 @@ void	init_philos(t_philo **philos, t_data *data, t_fork **forks)
 	philos_gen(philos, data, forks);
 	init_mutex(philos, data->num);
 	data->time_start = philo_set_time();
-	p = 0;
-	while (p < data->num)
+	p = -1;
+	while (++p < data->num)
 	{
-		if (pthread_create(&philos[p]->id, NULL, philo_routine, \
-		(void *)&philos[p]))
+		if (pthread_create(&((*philos)[p].th), NULL, philo_routine, \
+		(void *)&(*philos)[p]))
 			print_err("failed to create threads");
 	}
 }

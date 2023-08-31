@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:27:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/30 16:12:14 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/31 13:44:36 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 int	philo_isdead(t_philo *philo)
 {
-	pthread_mutex_lock(philo->death);
-	if (philo->death)
+	pthread_mutex_lock((*philo).death);
+	if (*((*philo).isdead))
 	{
-		pthread_mutex_unlock(philo->death);
+		pthread_mutex_unlock((*philo).death);
 		return (TRUE);
 	}
-	pthread_mutex_unlock(philo->death);
+	pthread_mutex_unlock((*philo).death);
 	return (FALSE);
 }
 
@@ -30,11 +30,11 @@ int	philo_kill(t_philo *philo)
 		return (TRUE);
 	if (philo_get_time(philo) - philo->time_last8 >= philo->data->time2die)
 	{
-		pthread_mutex_lock(philo->death);
-		*philo->isdead = TRUE;
-		if (*philo->isdead)
+		pthread_mutex_lock((*philo).death);
+		(*((*philo).isdead)) = TRUE;
+		if ((*((*philo).isdead)))
 			print_philo_msg(philo, "died");
-		pthread_mutex_unlock(philo->death);
+		pthread_mutex_unlock((*philo).death);
 		return (TRUE);
 	}
 	return (FALSE);

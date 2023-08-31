@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:50 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/30 15:15:55 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:33:43 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ typedef struct s_philo
 	unsigned long	time_last8;
 	t_fork			fork_left;
 	t_fork			fork_right;
-	pthread_t		id;
+	pthread_t		th;
 	pthread_mutex_t	*msg;
 	pthread_mutex_t	*death;
 	t_data			*data;

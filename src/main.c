@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:16 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/30 15:15:32 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/31 13:33:11 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,6 @@ int	main(int ac, char **av)
 	init_philos(&philos, &data, &forks);
 	p = 0;
 	while (p < data.num)
-		pthread_join(philos[p].id, NULL);
+		pthread_join(philos[p].th, NULL);
 	return (end_program(philos, forks, data));
 }

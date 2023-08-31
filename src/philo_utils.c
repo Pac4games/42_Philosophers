@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:38:46 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/30 15:59:20 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/31 14:23:31 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,8 @@ void	philos_gen(t_philo **philos, t_data *data, t_fork **forks)
 	(*philos) = malloc(data->num * sizeof(t_philo));
 	if (!(*philos))
 		print_err("failed to allocate memory");
-	p = 0;
-	while (p < data->num)
+	p = -1;
+	while (++p < data->num)
 	{
 		(*philos)[p].isdead = FALSE;
 		(*philos)[p].eat_num = 0;
@@ -30,7 +30,7 @@ void	philos_gen(t_philo **philos, t_data *data, t_fork **forks)
 			(*philos)[p].fork_left = (*forks)[data->num - 1];
 		else
 			(*philos)[p].fork_left = (*forks)[p];
-		(*philos)[p++].data = data;
+		(*philos)[p].data = data;
 	}
 }
 

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:16 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/31 13:33:11 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/31 16:54:10 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int ac, char **av)
 {
 	int		p;
 	t_data	data;
+	int		isdead;
 	t_fork	*forks;
 	t_philo	*philos;
 
@@ -26,7 +27,8 @@ int	main(int ac, char **av)
 	init_forks(&forks, data.num);
 	if (!forks)
 		print_err("failed to allocate memory for the forks");
-	init_philos(&philos, &data, &forks);
+	isdead = FALSE;
+	init_philos(&philos, &data, &forks, &isdead);
 	p = 0;
 	while (p < data.num)
 		pthread_join(philos[p].th, NULL);

@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 11:56:07 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 15:19:00 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/08/31 17:38:21 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,9 +23,9 @@ void	philo_get_forks(t_philo *philo)
 	while (!philo_kill(philo))
 	{
 		pthread_mutex_lock(philo->fork_right.mutex);
-		if (!(*philo->fork_right.taken))
+		if (!((*(*philo).fork_right.taken)))
 		{
-			*philo->fork_right.taken = TRUE;
+			(*(*philo).fork_right.taken) = TRUE;
 			pthread_mutex_unlock(philo->fork_right.mutex);
 			break ;
 		}
@@ -35,7 +35,7 @@ void	philo_get_forks(t_philo *philo)
 	while (!philo_kill(philo))
 	{
 		pthread_mutex_lock(philo->fork_left.mutex);
-		if (!(*philo->fork_left.taken))
+		if (!((*(*philo).fork_left.taken)))
 		{
 			*philo->fork_left.taken = TRUE;
 			pthread_mutex_unlock(philo->fork_left.mutex);

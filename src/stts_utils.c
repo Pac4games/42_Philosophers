@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:27:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/04 15:10:45 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:29:25 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,8 @@ int	philo_kill(t_philo *philo)
 {
 	if (philo_isdead(philo))
 		return (TRUE);
-	if (philo_get_time(philo) - philo->time_last8 >= philo->data->time2die)
+	if (philo_get_time(philo) - (*philo).time_last8 >= \
+		(*philo).data->time2die)
 	{
 		pthread_mutex_lock((*philo).death);
 		(*((*philo).isdead)) = TRUE;

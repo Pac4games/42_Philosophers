@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 11:56:07 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/04 14:32:35 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:03:44 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ void	philo_get_forks(t_philo *philo)
 		}
 		pthread_mutex_unlock((*philo).fork_left.mutex);
 	}
+	print_fork_taken(philo);
 }
 
 void	philo_drop_forks(t_philo *philo)

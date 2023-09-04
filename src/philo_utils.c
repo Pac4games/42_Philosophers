@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:38:46 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/31 16:57:16 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:01:31 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,16 +40,16 @@ void	*philo_routine(void *arg)
 
 	philo = ((t_philo *)arg);
 	philo->time_last8 = 0;
-	if (!(philo->num % 2))
+	if (!((*philo).num % 2))
 		usleep(10000);
-	while (!philo_isdead(philo))
+	while (!philo_kill(philo))
 	{
 		philo_eat(philo);
 		if (philo->data->hunger != -1 && philo->eat_num == philo->data->hunger)
 			break ;
 		if (!philo_kill(philo))
 			print_philo_msg(philo, "is sleeping");
-		philo_sleep(philo, philo->data->time2sleep);
+		philo_sleep(philo, (*philo).data->time2sleep);
 		if (!philo_kill(philo))
 			print_philo_msg(philo, "is thinking");
 	}

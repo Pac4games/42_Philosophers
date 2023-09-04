@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:27:38 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/31 16:56:47 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/04 15:10:45 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,11 @@ int	philo_kill(t_philo *philo)
 
 int	philo_sleep(t_philo *philo, unsigned long time2nap)
 {
-	unsigned long	time_start;
 	unsigned long	timer;
+	unsigned long	time_start;
 
-	time_start = philo_get_time(philo);
 	timer = 0;
+	time_start = philo_get_time(philo);
 	while (!philo_kill(philo) && timer <= time2nap)
 	{
 		if (philo_isdead(philo))
@@ -64,9 +64,9 @@ int	philo_eat(t_philo *philo)
 	philo_get_forks(philo);
 	if (!philo_isdead(philo))
 		print_philo_msg(philo, "is eating");
-	philo->eat_num++;
-	philo->time_last8 = philo_get_time(philo);
-	if (philo_sleep(philo, philo->data->time2eat))
+	(*philo).eat_num++;
+	(*philo).time_last8 = philo_get_time(philo);
+	if (philo_sleep(philo, (*philo).data->time2eat))
 		return (TRUE);
 	philo_drop_forks(philo);
 	return (FALSE);

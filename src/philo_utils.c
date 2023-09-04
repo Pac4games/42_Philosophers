@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:38:46 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/04 15:01:31 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/04 17:11:05 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *ded)
 		if (p == 0)
 			(*philos)[p].fork_left = (*forks)[data->num - 1];
 		else
-			(*philos)[p].fork_left = (*forks)[p];
+			(*philos)[p].fork_left = (*forks)[p - 1];
 		(*philos)[p].data = data;
 	}
 }

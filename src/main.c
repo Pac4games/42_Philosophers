@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:16 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/04 16:07:58 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/04 16:09:52 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 int	main(int ac, char **av)
 {
 	int		p;
-	t_data	data;
 	int		isdead;
+	t_data	data;
 	t_fork	*forks;
 	t_philo	*philos;
 

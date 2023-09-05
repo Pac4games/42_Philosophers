@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:04:40 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 10:35:21 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/05 11:44:58 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,16 @@ void	check_args(char **av)
 	int	p;
 	int	i;
 
+	if (ft_atoi(av[1]) == 0)
+		print_err("invalid number of philosophers");
 	p = 1;
 	while (av[p])
 	{
 		i = 0;
 		while (av[p][i])
 		{
-			if (av[p][i] <= '0' && av[p][i] >= '9')
-				print_err("one or more invalid arguments.");
+			if (av[p][i] <= '0' || av[p][i] >= '9')
+				print_err("one or more invalid arguments");
 			i++;
 		}
 		p++;

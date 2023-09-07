@@ -6,13 +6,13 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/29 11:56:07 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/04 16:58:33 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:10:34 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	print_fork_taken(t_philo *philo)
+static void	print_fork_taken(t_philo *philo)
 {
 	if (!philo_isdead(philo))
 		print_philo_msg(philo, "has taken a fork");

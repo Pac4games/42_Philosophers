@@ -6,11 +6,23 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:38:46 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/06 12:52:22 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/07 11:43:42 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
+
+void	philo_data_set(t_data *data, char **av)
+{
+	(*data).num = ft_atoi(av[1]);
+	(*data).time2die = ft_atoi(av[2]);
+	(*data).time2eat = ft_atoi(av[3]);
+	(*data).time2sleep = ft_atoi(av[4]);
+	if (av[5])
+		(*data).hunger = ft_atoi(av[5]);
+	else
+		(*data).hunger = -1;
+}
 
 void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *ded)
 {
@@ -58,7 +70,7 @@ void	*philo_routine(void *arg)
 
 void	print_philo_msg(t_philo *philo, char *msg)
 {
-	pthread_mutex_lock(philo->msg);
+	pthread_mutex_lock((*philo).msg);
 	printf("%lu %d %s\n", philo_get_time(philo), philo->id, msg);
-	pthread_mutex_unlock(philo->msg);
+	pthread_mutex_unlock((*philo).msg);
 }

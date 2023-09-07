@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:38:46 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/04 17:11:05 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:52:22 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	philos_gen(t_philo **philos, t_data *data, t_fork **forks, int *ded)
 	{
 		(*philos)[p].isdead = ded;
 		(*philos)[p].eat_num = 0;
-		(*philos)[p].num = p + 1;
+		(*philos)[p].id = p + 1;
 		(*philos)[p].fork_right = (*forks)[p];
 		if (p == 0)
 			(*philos)[p].fork_left = (*forks)[data->num - 1];
@@ -40,7 +40,7 @@ void	*philo_routine(void *arg)
 
 	philo = ((t_philo *)arg);
 	philo->time_last8 = 0;
-	if (!((*philo).num % 2))
+	if (!((*philo).id % 2))
 		usleep(10000);
 	while (!philo_kill(philo))
 	{
@@ -59,6 +59,6 @@ void	*philo_routine(void *arg)
 void	print_philo_msg(t_philo *philo, char *msg)
 {
 	pthread_mutex_lock(philo->msg);
-	printf("%lu %d %s\n", philo_get_time(philo), philo->num, msg);
+	printf("%lu %d %s\n", philo_get_time(philo), philo->id, msg);
 	pthread_mutex_unlock(philo->msg);
 }

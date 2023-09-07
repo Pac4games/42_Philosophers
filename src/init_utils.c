@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 15:00:52 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/04 14:29:52 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/06 14:18:11 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,12 +85,12 @@ int	end_program(t_philo *philos, t_fork *forks, t_data data)
 {
 	int	p;
 
-	p = 0;
-	while (p < data.num)
+	p = -1;
+	while (++p < data.num)
 	{
 		pthread_mutex_destroy(philos[p].fork_right.mutex);
 		pthread_mutex_destroy(philos[p].fork_left.mutex);
-		pthread_mutex_destroy(forks[p++].mutex);
+		pthread_mutex_destroy(forks[p].mutex);
 	}
 	pthread_mutex_destroy(philos->msg);
 	pthread_mutex_destroy(philos->death);

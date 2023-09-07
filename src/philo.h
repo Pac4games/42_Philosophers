@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:50 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/04 14:30:02 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/06 12:52:03 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ typedef struct s_philo_data
 
 typedef struct s_philo
 {
-	int				num;
+	int				id;
 	int				eat_num;
 	int				*isdead;
 	unsigned long	time_start;

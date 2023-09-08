@@ -6,13 +6,13 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 16:04:40 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/07 11:39:40 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:00:29 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	check_args(char **av)
+int	check_args(char **av)
 {
 	int	p;
 	int	i;
@@ -24,16 +24,17 @@ void	check_args(char **av)
 		while (av[p][i])
 		{
 			if (av[p][i] < '0' || av[p][i] > '9')
-				print_err("one or more invalid arguments");
+				return (print_err_ret("one or more invalid arguments"));
 			i++;
 		}
 		if (ft_atoi(av[p]) <= 0 || ft_atoi(av[p]) > INT_MAX)
-			print_err("one or more invalid arguments");
+			return (print_err_ret("one or more invalid arguments"));
 		p++;
 	}
+	return (0);
 }
 
-void	check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex)
+int	check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex)
 {
 	if (!(*forks) || !mutex)
 	{
@@ -41,11 +42,12 @@ void	check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex)
 			free(forks);
 		if (mutex)
 			free(mutex);
-		print_err("failed to allocate memory");
+		return (print_err_ret("failed to allocate memory"));
 	}
+	return (0);
 }
 
-void	check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2)
+int	check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2)
 {
 	if (!mt1 || !mt2)
 	{
@@ -53,6 +55,7 @@ void	check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2)
 			free(mt1);
 		if (mt2)
 			free(mt2);
-		print_err("failed to allocate memory");
+		return (print_err_ret("failed to allocate memory"));
 	}
+	return (0);
 }

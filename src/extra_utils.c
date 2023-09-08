@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:33:10 by paugonca          #+#    #+#             */
-/*   Updated: 2023/08/29 11:31:42 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:48:16 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,12 @@ static void	ft_putstr_fd(char *str, int fd)
 		write(fd, &str[p++], 1);
 }
 
-void	print_err(char *msg)
+//Alterantive verion of my usual print_err() function, but for babies cause
+//you can't use exit() in this lovely project
+int	print_err_ret(char *msg)
 {
 	ft_putstr_fd("Error: ", STDERR_FILENO);
 	ft_putstr_fd(msg, STDERR_FILENO);
 	ft_putstr_fd("\n", STDERR_FILENO);
-	exit(EXIT_FAILURE);
+	return (EXIT_FAILURE);
 }

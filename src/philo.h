@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:50 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/07 11:39:37 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/08 11:56:26 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,17 @@ typedef struct s_philo
 
 //extra_utils.c
 int				ft_atoi(char *str);
-void			print_err(char *msg);
+int				print_err_ret(char *msg);
 //init_utils.c
-void			init_forks(t_fork **forks, int philo_num);
-void			init_philos(t_philo **p, t_data *d, t_fork **f, int *ded);
+int				init_forks(t_fork **forks, int philo_num);
+int				init_philos(t_philo **p, t_data *d, t_fork **f, int *ded);
 //check_utils.c
-void			check_args(char **av);
-void			check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex);
-void			check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2);
+int				check_args(char **av);
+int				check_fork_malloc(t_fork **forks, pthread_mutex_t *mutex);
+int				check_mutex_malloc(pthread_mutex_t *mt1, pthread_mutex_t *mt2);
 //philo_utils.c
 void			philo_data_set(t_data *data, char **av);
-void			philos_gen(t_philo **phils, t_data *d, t_fork **f, int *ded);
+int				philos_gen(t_philo **phils, t_data *d, t_fork **f, int *ded);
 void			print_philo_msg(t_philo *philo, char *msg);
 void			*philo_routine(void *arg);
 //time_utils.c

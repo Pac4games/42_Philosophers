@@ -6,7 +6,7 @@
 /*   By: paugonca <paugonca@student.42lisboa.com>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/28 12:30:16 by paugonca          #+#    #+#             */
-/*   Updated: 2023/09/07 13:58:14 by paugonca         ###   ########.fr       */
+/*   Updated: 2023/09/08 12:02:20 by paugonca         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,14 +39,17 @@ int	main(int ac, char **av)
 	t_philo	*philos;
 
 	if (ac != 5 && ac != 6)
-		print_err("invalid number of arguments");
-	check_args(av);
+		return (print_err_ret("invalid number of arguments"));
+	if (check_args(av))
+		return (EXIT_FAILURE);
 	philo_data_set(&data, av);
-	init_forks(&forks, data.num);
+	if (init_forks(&forks, data.num))
+		return (EXIT_FAILURE);
 	if (!forks)
-		print_err("failed to allocate memory for the forks");
+		return (print_err_ret("failed to allocate memory for the forks"));
 	isdead = FALSE;
-	init_philos(&philos, &data, &forks, &isdead);
+	if (init_philos(&philos, &data, &forks, &isdead))
+		return (EXIT_FAILURE);
 	p = 0;
 	while (p < data.num)
 		pthread_join(philos[p++].th, NULL);
